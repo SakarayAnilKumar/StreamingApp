@@ -51,9 +51,6 @@ pipeline {
                         }
                     }
                     stage('Push to ECR') {
-                        when {
-                            branch 'main'
-                        }
                         steps {
                             script {
                                 echo "=== Pushing ${SERVICE} to ECR ==="
@@ -67,7 +64,7 @@ pipeline {
             }
         }
 
-        stage('Build, Scan & Push Frontend Service') {
+        stage('Build & Push Frontend Service') {
             stages {
                 stage('Build Frontend with Build-Args') {
                     steps {
@@ -81,7 +78,7 @@ pipeline {
                                   --build-arg REACT_APP_ADMIN_URL="/api/admin" \
                                   --build-arg REACT_APP_CHAT_SOCKET_URL="/api/chat" \
                                   -t ${ECR_REGISTRY}/${APP_PREFIX}-frontend:${IMAGE_TAG} \
-                                  -f ./frontend-service/Dockerfile ./frontend-service
+                                  -f ./frontend/Dockerfile ./frontend
                             """
                         }
                     }
