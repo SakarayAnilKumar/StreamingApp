@@ -46,7 +46,7 @@ pipeline {
                         steps {
                             script {
                                 echo "=== Building ${SERVICE} Service ==="
-                                sh "docker build -t ${ECR_REGISTRY}/${APP_PREFIX}-${SERVICE}:${IMAGE_TAG} -f ./backend/${SERVICE}Service/Dockerfile"
+                                sh "docker build -t ${ECR_REGISTRY}/${APP_PREFIX}-${SERVICE}:${IMAGE_TAG} -f ./backend/${SERVICE}Service/Dockerfile ./backend/${SERVICE}Service"
                             }
                         }
                     }
