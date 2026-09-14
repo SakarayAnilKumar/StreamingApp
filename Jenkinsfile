@@ -18,20 +18,7 @@ pipeline {
         APP_PREFIX              = 'streamingapp'
     }
 
-    options {
-        timeout(time: 1, unit: 'HOURS')
-        disableConcurrentBuilds()
-        ansiColor('xterm')
-    }
-
     stages {
-        // stage('Helm Chart Validation') {
-        //     steps {
-        //         echo '=== Step 1: Linting Local Helm Chart Templates ==='
-        //         sh 'helm lint helm/streamingapp'
-        //     }
-        // }
-
         stage('AWS ECR Authentication') {
             steps {
                 script {
